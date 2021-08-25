@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby '3.0.2'
+
 group :preload do
 	gem 'utopia', '~> 2.18.5'
 	# gem 'utopia-gallery'
