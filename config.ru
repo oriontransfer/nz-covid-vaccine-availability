@@ -18,7 +18,7 @@ end
 use Utopia::Static, root: 'public'
 
 use Utopia::Redirection::Rewrite, {
-	'/' => '/welcome/index'
+	'/' => '/availability/index'
 }
 
 use Utopia::Redirection::DirectoryIndex
@@ -31,12 +31,6 @@ require 'utopia/localization'
 use Utopia::Localization,
 	default_locale: 'en',
 	locales: ['en', 'de', 'ja', 'zh']
-
-require 'utopia/session'
-use Utopia::Session,
-	expires_after: 3600 * 24,
-	secret: UTOPIA.secret_for(:session),
-	secure: true
 
 use Utopia::Controller
 

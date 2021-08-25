@@ -120,14 +120,6 @@ h2, h3, h4, h5, h6 {
 	font-weight: normal;
 }
 
-body.front h1 {
-	font-weight: normal;
-	font-size: 300%;
-	color: #F89432;
-
-	text-align: center;
-}
-
 footer {
 	text-align: right;
 	margin: 2rem;
@@ -142,64 +134,147 @@ nav {
 	color: #aaa;
 }
 
-section.features {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	
-	margin: 1rem;
+main {
+	max-width: 48rem;
+	margin: auto;
 }
 
-section.features > div {
-	box-sizing: border-box;
+form input, form textarea, form select {
+	box-sizing: content-box;
+	font-size: inherit;
 	
-	flex-basis: 20rem;
-	flex-grow: 1;
-	
-	color: #171e42;
-	margin: 1rem;
-	padding: 1rem;
-	
-	padding-left: 3rem;
-	
-	position: relative;
-}
-
-section.features > div i {
-	position: absolute;
-	left: 0rem;
-	
-	font-size: 1.5rem;
-	text-align: center;
-	
-	width: 3rem;
-	color: #fafafa;
-	text-shadow: 0px 0px 1px #000;
-}
-
-section.features p {
-	margin: 0;
-	maring-bottom: 1rem;
-	font-size: 80%;
-}
-
-section.features h2 {
-	margin: 0;
-	font-size: 1.1rem;
-	padding: 0;
+	border: 0.1rem solid #eee;
+	border-left: 0.2rem solid;
+	border-radius: 0.2rem;
+	transition: border-color .5s ease-out;
 }
 
 form fieldset {
-	border: 0;
+	border: none;
+}
+
+form fieldset *:optional {
+	border-left-color: #8fa6bf;
+}
+
+form fieldset *:required {
+	border-left-color: #25ba00;
+}
+
+form fieldset *:invalid {
+	border-left-color: #eb3f00;
+}
+
+fieldset legend {
+	font-weight: bold;
+}
+
+fieldset label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+fieldset > label {
+	margin-bottom: 1rem;
+}
+
+fieldset label span:first-child {
+	margin: 0.5rem;
+}
+
+fieldset label small {
+	display: block;
+}
+
+fieldset > label > span:first-child {
+	flex: 1 0 12rem;
+	max-width: 22rem;
+}
+
+fieldset > label > span + * {
+	flex: 1 0 22rem;
+	padding: 1rem;
+}
+
+form fieldset input[type=submit] {
+	margin-left: auto;
+	font-size: 100%;
 }
 
 form fieldset textarea {
-	box-sizing: border-box;
-	
 	width: 100%;
 	height: 10rem;
+	font-family: inherit;
 }
 
 form fieldset.footer {
 	text-align: right;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table td {
+	padding: 5pt;
+}
+
+table th {
+	padding: 5pt;
+	font-weight: normal;
+}
+
+table .actions {
+	width: 22pt;
+}
+
+table tbody th {
+	background-color: rgba(10, 200, 100, 0.04);
+}
+
+table tbody td.actions {
+	text-align: center;
+}
+
+table tbody .description {
+	background-color: white;
+}
+
+table tbody .description {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+table thead {
+	background-color: #d8e6db;
+}
+
+table .date, table .number {
+	width: 80px;
+	text-align: center;
+}
+
+table .for {
+	text-align: center;
+}
+
+table .total {
+	text-align: right;
+	width: 12%;
+	border-left: 1px dashed #ccc;
+}
+
+table tfoot {
+	border-top: 1px solid #ccc;
+	background-color: rgba(0, 200, 80, 0.08);
+}
+
+table tfoot td {
+	text-align: right;
+}
+
+table tbody tr:hover {
+	background-color: rgba(0, 200, 80, 0.08);
 }

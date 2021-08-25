@@ -1,0 +1,35 @@
+<content:page class="front">
+	<content:heading>New Zealand Vaccine Availaibility</content:heading>
+	
+	<p>This query shows you times which are available for the first shot. If you see a suitable slot, visit <a href="https://https://app.bookmyvaccine.covid19.health.nz">bookmyvaccine.covid19.health.nz</a> and enter the same details.</p>
+	
+	<?r if query = self[:query] ?>
+	<h2>Results</h2>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th><th>Address</th><th>Availability Date</th><th>Availability Time</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?r query.each_slot do |location, availability, slot| ?>
+			<tr>
+				<td>#{location['name']}</td>
+				<td>#{location['displayAddress']} (#{(location['distanceInMeters'] / 1000.0).floor}km)</td>
+				<td>#{availability['date']} (in #{(Date.parse(availability['date']) - Date.today).floor} days)</td>
+				<td>#{slot['localStartTime']}</td>
+			</tr>
+		<?r end ?>
+		</tbody>
+	</table>
+	<?r else ?>
+	<p>Select the closest city:</p>
+	
+	<ul>
+		<li><a href="172.5294/-43.5373/index">Ōtautahi</a> (Christchurch)</li>
+		<li><a href="174.7645/-36.8509/index">Tāmaki Makaurau</a> (Auckland)</li>
+		<li><a href="174.7787/-41.2924/index">Te Whanganui-a-Tara</a> (Wellington)</li>
+	</ul>
+	<?r end ?>
+</content:page>

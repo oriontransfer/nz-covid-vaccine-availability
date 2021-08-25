@@ -156,6 +156,9 @@ GEM
     timers (4.3.3)
     trenni (3.13.1)
       rake-compiler
+    trenni-formatters (2.13.1)
+      mapping (~> 1.1)
+      trenni (~> 3.12)
     trenni-sanitize (0.6.1)
       trenni (~> 3.5)
     utopia (2.18.5)
@@ -176,6 +179,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  async-http
   async-rspec
   bake
   benchmark-http
@@ -187,6 +191,8 @@ DEPENDENCIES
   rack-test
   rake
   rspec
+  thread-local
+  trenni-formatters
   utopia (~> 2.18.5)
   variant
 

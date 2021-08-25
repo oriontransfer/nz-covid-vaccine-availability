@@ -15,6 +15,11 @@ gem 'bake'
 gem 'bundler'
 gem 'rack-test'
 
+gem 'async-http'
+gem 'thread-local'
+
+gem 'trenni-formatters'
+
 group :development do
 	gem 'guard-falcon', require: false
 	gem 'guard-rspec', require: false
