@@ -16,9 +16,10 @@ module Vaccine
 			lat: -43.5373362,
 		}
 		
-		def initialize(key: KEY, location: OTAUTAHI)
+		def initialize(key: KEY, location: OTAUTAHI, forwarded_for: nil)
 			@key = key
 			@location = location
+			@forwarded_for = forwarded_for
 		end
 		
 		def longitude
@@ -33,6 +34,15 @@ module Vaccine
 			Async::HTTP::Internet.instance
 		end
 		
+		def headers(*fields)
+			if @forwarded_for
+				Console.logger.info(self, "Adding x-forwarded-for: #{@forwarded_for}")
+				fields << ['X-Forwarded-For', @forwarded_for]
+			end
+			
+			return fields
+		end
+		
 		def lookup_locations
 			query = {
 				vaccineData: KEY,
@@ -45,7 +55,7 @@ module Vaccine
 			locations = {}
 			
 			while true
-				response = internet.post(SEARCH, [['content-type', 'application/json']], JSON.generate(query))
+				response = internet.post(SEARCH, headers(['content-type', 'application/json']), JSON.generate(query))
 				
 				body = JSON.parse(response.read)
 				cursor = body['cursor']
@@ -75,7 +85,7 @@ module Vaccine
 				groupSize: 1,
 			}
 			
-			response = internet.post(url, [['content-type', 'application/json']], JSON.generate(query))
+			response = internet.post(url, headers(['content-type', 'application/json']), JSON.generate(query))
 			body = JSON.parse(response.read)
 			
 			return body['availability']&.select{|availability| availability['available']}
@@ -89,7 +99,7 @@ module Vaccine
 				vaccineData: KEY,
 			}
 			
-			response = internet.post(url, [['content-type', 'application/json']], JSON.generate(query))
+			response = internet.post(url, headers(['content-type', 'application/json']), JSON.generate(query))
 			body = JSON.parse(response.read)
 			
 			return body['slotsWithAvailability']
